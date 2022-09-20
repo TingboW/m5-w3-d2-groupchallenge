@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from "react";
 import Contacts from "./contacts";
 
@@ -6,7 +7,15 @@ class App extends React.Component {
       contacts:[],
     }
   
-  componentDidMount = () => {
+  componentDidMount() {
+    axios.get(`https://jsonplaceholder.typicode.com/users`)
+    .then(res => {
+      const contacts = res.data;
+      this.setState ({ contacts });
+    })
+
+  }
+  /* componentDidMount = () => {
     fetch("https://jsonplaceholder.typicode.com/users")
     .then(res => res.json())
     .then((data) => {
@@ -15,7 +24,7 @@ class App extends React.Component {
       })
   })
     .catch(console.log);
-  }
+  } */
 
   render() {
     return(
